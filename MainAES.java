@@ -14,15 +14,13 @@ public class MainAES {
   private static final String KEY = "1234567890abcdef";
   private static final String ALGORITHM = "AES";
     public static void main(String [] args) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+    String source = "test";
     try {
-      String source = "test";
       String encrypt = CipherManager.encrypt(source, KEY, ALGORITHM);
       String decrypt = CipherManager.decrypt(encrypt, KEY, ALGORITHM);
-      System.out.println("Source: "  + source);
-      System.out.println("Encrypt: " + encrypt);
-      System.out.println("Decrypt: " + decrypt);
       String hash = Hash.hashGanerate(encrypt, "MD5");
       Object object = new Object(encrypt, hash);
+      System.out.println(Hash.hashCheck(object.getEncryptData(),object.getHashValue(), "MD5"));
       System.out.println(object.getEncryptData());
       System.out.println(object.getHashValue());
       System.out.println("hash: " + hash);

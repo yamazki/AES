@@ -19,4 +19,25 @@ public class CipherManager {
     cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key.getBytes(), algorithm));
     return new String(cipher.doFinal(Base64.getDecoder().decode(encryptSource.getBytes())));
   }
+
+  public static byte[] readFile(String filename) {
+    try {
+      FileInputStream is = new FileInputStream(filename);
+      ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+      byte[] buf = new byte[256];
+      int size = 0;
+      while ((size = is.read(buf)) != -1) {
+        bytes.write(buf, 0, size);
+      }
+      return bytes.toByteArray();
+    } catch (Exception e) {
+    }
+   return null;
+  }  
+
+  public static String readPem (String filename) {
+    
+    
+  
+  }
 }

@@ -11,10 +11,10 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class MainAES {
-  private static final String KEY = "1234567890abcdef";
   private static final String ALGORITHM = "AES";
     public static void main(String [] args) throws UnsupportedEncodingException, NoSuchAlgorithmException {
     String source = "test";
+    String KEY = CipherManager.readFile("./key/public-key.pem");
     try {
       String encrypt = CipherManager.encrypt(source, KEY, ALGORITHM);
       String decrypt = CipherManager.decrypt(encrypt, KEY, ALGORITHM);
@@ -23,8 +23,9 @@ public class MainAES {
       System.out.println(Hash.hashCheck(object.getEncryptData(),object.getHashValue(), "MD5"));
       System.out.println(object.getEncryptData());
       System.out.println(object.getHashValue());
-      System.out.println(CipherManager.readfile("./key/public-key.pem"));
+      System.out.println(CipherManager.readFile("./key/public-key.pem"));
       System.out.println("hash: " + hash);
+      System.out.println(decrypt);
     } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException ex) {
       Logger.getLogger(MainAES.class.getName()).log(Level.SEVERE, null, ex);
     }

@@ -15,15 +15,15 @@ public class MainAES {
   private static final String ALGORITHM = "AES";
     public static void main(String [] args) throws UnsupportedEncodingException, NoSuchAlgorithmException {
     String source = "test";
+    System.out.println();
     try {
-      String encrypt = CipherManager.encrypt(source, KEY, ALGORITHM);
-      String decrypt = CipherManager.decrypt(encrypt, KEY, ALGORITHM);
+      String encrypt = CipherManager.encrypt(source,  KEY,   ALGORITHM);
+      String decrypt = CipherManager.decrypt(encrypt, KEY , ALGORITHM);
       String hash = Hash.hashGanerate(encrypt, "MD5");
       Object object = new Object(encrypt, hash);
       System.out.println(Hash.hashCheck(object.getEncryptData(),object.getHashValue(), "MD5"));
       System.out.println(object.getEncryptData());
       System.out.println(object.getHashValue());
-      System.out.println(CipherManager.readfile("./key/public-key.pem"));
       System.out.println("hash: " + hash);
     } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException ex) {
       Logger.getLogger(MainAES.class.getName()).log(Level.SEVERE, null, ex);

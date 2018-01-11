@@ -1,6 +1,10 @@
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+import java.io.File;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.IOException;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -20,24 +24,4 @@ public class CipherManager {
     return new String(cipher.doFinal(Base64.getDecoder().decode(encryptSource.getBytes())));
   }
 
-  public static byte[] readFile(String filename) {
-    try {
-      FileInputStream is = new FileInputStream(filename);
-      ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-      byte[] buf = new byte[256];
-      int size = 0;
-      while ((size = is.read(buf)) != -1) {
-        bytes.write(buf, 0, size);
-      }
-      return bytes.toByteArray();
-    } catch (Exception e) {
-    }
-   return null;
-  }  
-
-  public static String readPem (String filename) {
-    
-    
-  
-  }
 }
